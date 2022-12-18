@@ -39,5 +39,10 @@ nvm install 16
 nvm use 16
 npm install -g npm nodejs typescript aws-sdk aws-cdk yarn
 
+runuser - ec2-user -c 'cd /home/ec2-user;
+git clone https://github.com/mbhatla/NodeDAPP.git;
+cd NodeDAPP;
+wait;
+npm install'
 
 #!/bin/bash

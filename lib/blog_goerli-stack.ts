@@ -37,6 +37,7 @@ console.log("using configuration: ", config);
 export class BlogGoerliStack extends cdk.Stack {
   public  acID: string;
   public  BillingToken: string;
+  public  nodeId: string;
 
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -107,12 +108,31 @@ export class BlogGoerliStack extends cdk.Stack {
     )
 
 
-    const cfnNode = new managedblockchain.CfnNode(this, "MyBCNode" , {
+    /*const cfnNode = new managedblockchain.CfnNode(this, "MyBCNode" , {
       networkId: "n-ethereum-goerli",
       nodeConfiguration: {
         availabilityZone: process.env.CDK_DEFAULT_REGION + "a",
         instanceType: "bc.t3.large"
       }
+    });*/
+
+    const createNode = new cr.AwsCustomResource(this, 'createNode', {
+      onCreate: { // will be called for a CREATE event
+        service: 'ManagedBlockchain',
+        action: 'createNode',
+        parameters: {
+          NetworkId: "n-ethereum-goerli",
+          NodeConfiguration: {
+            AvailabilityZone: process.env.CDK_DEFAULT_REGION + "a",
+            InstanceType: "bc.t3.large"
+          }
+        },
+        physicalResourceId: cr.PhysicalResourceId.of(Date.now().toString()), // Update physical id to always fetch the latest version
+      },
+      installLatestAwsSdk:true,
+      policy: cr.AwsCustomResourcePolicy.fromSdkCalls({
+        resources: cr.AwsCustomResourcePolicy.ANY_RESOURCE,
+      }),
     });
 
     const createAccessor = new cr.AwsCustomResource(this, 'createAccessor', {
@@ -132,7 +152,9 @@ export class BlogGoerliStack extends cdk.Stack {
 
     this.acID = createAccessor.getResponseField('AccessorId');
     this.BillingToken= createAccessor.getResponseField('BillingToken');
-    const AMB_URL: string = "https://"+ cfnNode.attrNodeId + ".t.ethereum.managedblockchain." + process.env.CDK_DEFAULT_REGION + ".amazonaws.com?billingtoken=" + this.BillingToken;
+    this.nodeId= createNode.getResponseField('NodeId');
+    //const AMB_URL: string = "https://"+ cfnNode.attrNodeId + ".t.ethereum.managedblockchain." + process.env.CDK_DEFAULT_REGION + ".amazonaws.com?billingtoken=" + this.BillingToken;
+    const AMB_URL: string = "https://"+ this.nodeId + ".t.ethereum.managedblockchain." + process.env.CDK_DEFAULT_REGION + ".amazonaws.com?billingtoken=" + this.BillingToken;
     
     const deleteAccessor = new cr.AwsCustomResource(this, 'deleteAccessor', {
       onDelete: { 
@@ -140,6 +162,21 @@ export class BlogGoerliStack extends cdk.Stack {
         action: 'deleteAccessor',
         parameters: {
           AccessorId: createAccessor.getResponseField('AccessorId'),
+        },
+      },
+      installLatestAwsSdk:true,
+      policy: cr.AwsCustomResourcePolicy.fromSdkCalls({
+        resources: cr.AwsCustomResourcePolicy.ANY_RESOURCE,
+      }),
+    });
+
+    const deleteNode = new cr.AwsCustomResource(this, 'deleteNode', {
+      onDelete: { 
+        service: 'ManagedBlockchain',
+        action: 'deleteNode',
+        parameters: {
+          NetworkId: "n-ethereum-goerli",
+          NodeId: createNode.getResponseField('NodeId'),
         },
       },
       installLatestAwsSdk:true,
@@ -208,7 +245,7 @@ export class BlogGoerliStack extends cdk.Stack {
       value: this.BillingToken
     })
     new cdk.CfnOutput(this, 'AMB NoDE ID', {
-      value: cfnNode.attrNodeId
+      value: this.nodeId
     })
 
     var userData: string = "";

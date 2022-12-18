@@ -4,11 +4,11 @@
     "nickName": "AMB_Dev",
     "ec2Class": "t3",
     "ec2Size": "xlarge",
-    "keyName": "AMB_DEV_KEY",
-    "keyFile": "./Key/AMB_DEV_KEY.pem",
+    "keyName": "YOUR KEY NAME HERE",
+    "keyFile": "./Key/yourKey.pem",
     "userDataFile": "./Scripts/startup_user.sh",
     "cdkOut": "cdk-outputs.json",
     "timeBomb": "30",
     "awsConfig": "~/.aws",
-    "Mnemonic": "into dolphin number dutch inform produce lawsuit arrange execute insect divert frame"
+    "Mnemonic": "Mnemonic from a Wallet like Metamask"
 }
