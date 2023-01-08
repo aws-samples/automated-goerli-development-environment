@@ -37,12 +37,16 @@ source $HOME/.bashrc
 
 nvm install 16
 nvm use 16
+nvm alias default 16
+npm install npm --global # Upgrade npm to the latest version
 npm install -g npm nodejs typescript aws-sdk aws-cdk yarn
 
 runuser - ec2-user -c 'cd /home/ec2-user;
 git clone https://github.com/mbhatla/NodeDAPP.git;
 cd NodeDAPP;
 wait;
+npm install
+cd DemoApps
 npm install'
 
 #!/bin/bash
