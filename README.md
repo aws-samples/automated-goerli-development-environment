@@ -117,6 +117,7 @@ INSTANCE\_IP\_ADDRESS is printed as a output to the cdk deploy command.
 Once logged into the EC2 instance, there is Bolierplate Solidity code for a simple Smart-Contract and also node.js code to access the Blockchain, Compile/Deploy the Smart-Contract and access the Smart-Contract using the required transactions. Hardhat is already installed with a sample script for testing the smart-contract.
 
 There will be directory structure created:
+
 NodeDAPP: Parent Directory
 
     artifacts: Directory used by compiler
@@ -127,7 +128,7 @@ NodeDAPP: Parent Directory
 
         CountPerAccount.sol
 
-    DemoApps: node.js code for Blockchain Access and Smart-Contract
+    DemoApps: node.js code for Blockchain and Smart-Contract Access
 
     test: Script to run some sample test on Smart-Contract using Hardhat
 
