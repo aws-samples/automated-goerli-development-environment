@@ -116,22 +116,29 @@ INSTANCE\_IP\_ADDRESS is printed as a output to the cdk deploy command.
 
 Once logged into the EC2 instance, there is Bolierplate Solidity code for a simple Smart-Contract and also node.js code to access the Blockchain, Compile/Deploy the Smart-Contract and access the Smart-Contract using the required transactions. Hardhat is already installed with a sample script for testing the smart-contract.
 
-There will be directory staructure created:
+There will be directory structure created:
 NodeDAPP: Parent Directory
+
     artifacts: Directory used by compiler
+
     Cache:Directory used by compiler
+
     contracts: Solidity code of Smart-Contract
+
         CountPerAccount.sol
+
     DemoApps: node.js code for Blockchain Access and Smart-Contract
+
     test: Script to run some sample test on Smart-Contract using Hardhat
 
-Run the following command to run the tests on Smart-Contracts
+
+Run the following command to run the tests on Smart-Contract
 
 _cd NodeDAPP_
 
 _npx hardhat test_
 
-Other Hardhat tools and Commands are available to use here in this directory
+Other Hardhat tools and Commands are available to use in this directory
 
 To run node.js based applications which have pre-provided as bolierplate code you can perform the following commands.
 
@@ -175,7 +182,7 @@ _IdentityFile [location where the pem file you downloaded] (whole path like: "/u
 
 ## 11. Cleaning up
 
-This command will delete the resources we just created .
+This command will delete the AWS resources we created. Please storethe code updates you may have made before running this command.
 
 _cdk destroy_
 
