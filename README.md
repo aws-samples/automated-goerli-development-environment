@@ -114,13 +114,40 @@ ssh -i ./Key/YOURKEYNAME.pem ec2-user@INSTANCE\_IP\_ADDRESS
 
 INSTANCE\_IP\_ADDRESS is printed as a output to the cdk deploy command.
 
-Once logged into the EC@ instance run the following commands to perform some sample operations on the Goerli Blockchain:
+Once logged into the EC2 instance, there is Bolierplate Solidity code for a simple Smart-Contract and also node.js code to access the Blockchain, Compile/Deploy the Smart-Contract and access the Smart-Contract using the required transactions. Hardhat is already installed with a sample script for testing the smart-contract.
+
+There will be directory staructure created:
+NodeDAPP: Parent Directory
+    artifacts: Directory used by compiler
+    Cache:Directory used by compiler
+    contracts: Solidity code of Smart-Contract
+        CountPerAccount.sol
+    DemoApps: node.js code for Blockchain Access and Smart-Contract
+    test: Script to run some sample test on Smart-Contract using Hardhat
+
+Run the following command to run the tests on Smart-Contracts
 
 _cd NodeDAPP_
 
-_node demo_
+_npx hardhat test_
 
-Code for these operations is with the .js files within the directory.
+Other Hardhat tools and Commands are available to use here in this directory
+
+To run node.js based applications which have pre-provided as bolierplate code you can perform the following commands.
+
+_cd DemoApps_
+
+_node demoBlockChainAccess_  
+
+This is to access the blockchain, get the balances on the 10 accounts based on the Mnemonic, and also perform a transaction to transfer gEth from an account to another.
+
+_node demoContract_  
+
+This is to complie abd deploy the smart-contract, the address of the deployed smart-contract is automatically configured to the environment for smart-contract access
+
+_node demoContractAccess_  
+
+This is to access the smart-contract, the transactions are signed and sent to the Blockchain and result printed
 
 ## 10. Remote Connection for VS Code
 
