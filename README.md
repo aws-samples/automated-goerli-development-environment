@@ -58,13 +58,14 @@ _cd_ _automated-goerli-development-environment_
 
 **7. Create and Download an EC2 Key Pair/PEM file**
 
-Using the AWS console, you will need to create an Amazon EC2 Key Pair PEM file and download the pem file. Save it to a to the ./Key directory and run:
+Using the AWS console, you will need to create an Amazon EC2 Key Pair PEM file and download the pem file. The key needs to be created in the region configured in step 2. Save it to the ./Key directory and run:
 
 _chmod 0400 on the key file_
 
+
 ## 8. Configuration
 
-Copy the file 'configs/config.json.template' to 'configs/config.json and edit it with your favorite editor:
+Copy the file 'configs/config_template.json' to 'configs/config.json and edit it with your favorite editor:
 
 _{_
 
@@ -102,9 +103,16 @@ The cdkOut file can be named anything, but it should have a json extension since
 
 Make sure you are in automated-goerli-development-environment directory and run:
 
+*if you are setting this project up for the first time on your machine*
+_npm install_
+_cdk bootstrap_
+
+
 _cdk deploy_
 
 Will take about 3 minutes, but AMB node will not be usable for 35 minutes, till the Blockchain data is copied
+
+Once the Deployment is completed, An EC2 instance with the tools and encvironment to develop,test,compile and deploy Smart Contract will be available. Other resources to access the Blockchain which include the VPC, Amazon Managed Blockchain(AMB) node, Accessor Token, security policies will be created.
 
 ## 9. Connecting to the EC2 instance
 
