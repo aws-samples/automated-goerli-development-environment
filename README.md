@@ -101,16 +101,16 @@ The cdkOut file can be named anything, but it should have a json extension since
 
 ## 9. Deployment
 
-Make sure you are in automated-goerli-development-environment directory and run:
+Make sure you are in automated-goerli-development-environment directory
 
-*if you are setting this project up for the first time on your machine*
-_npm install_
-_cdk bootstrap_
+if you are setting this project up for the <u>**first time**</u> on your machine run these two commands:   
+_npm install_   
+_cdk bootstrap_   
 
-
+Deploy the environment using this command:
 _cdk deploy_
 
-Will take about 3 minutes, but AMB node will not be usable for 35 minutes, till the Blockchain data is copied
+Will take about 3 minutes, but **AMB node will not be usable for 40 minutes**, till the Blockchain data is synched
 
 Once the Deployment is completed, An EC2 instance with the tools and encvironment to develop,test,compile and deploy Smart Contract will be available. Other resources to access the Blockchain which include the VPC, Amazon Managed Blockchain(AMB) node, Accessor Token, security policies will be created.
 
