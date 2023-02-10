@@ -9,7 +9,7 @@ The AWS CLI allows you to interact with AWS services from a terminal session. Ma
 
 **2. AWS Account**
 
-To complete the setup, you will need to have access to an AWS Account with a IAM User with appropriate Accessor IAM Role with an Administrator Access policy.
+To complete the setup, you will need to have access to an AWS account with an IAM user with appropriate accessor IAM role with an administrator access policy.
 
 **Configure Your Credentials**
 
@@ -107,7 +107,7 @@ if you are setting this project up for the <u>**first time**</u> on your machine
 _npm install_   
 _cdk bootstrap_   
 
-Deploy the environment using this command:
+Deploy the environment using this command:  
 _cdk deploy_
 
 Will take about 3 minutes, but **AMB node will not be usable for 40 minutes**, till the Blockchain data is synched
