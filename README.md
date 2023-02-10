@@ -50,7 +50,7 @@ _cdk –version_
 
 **6. Clone the Git Repo**
 
-_git clone https://gitlab.aws.dev/amb-blockchain-sa/automated-goerli-development-environment.git_
+_git clone git@ssh.gitlab.aws.dev:amb-blockchain-sa/automated-goerli-development-environment.git_
 
 Change directory to automated-goerli-development-environment
 
