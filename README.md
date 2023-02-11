@@ -1,4 +1,4 @@
-Steps to Install and Deploy the Automated Goerli Development Environment on AWS, using AMB with Token Based Access
+Steps to Install and Deploy the Automated Goerli Development Environment on AWS, using AMB with Token Based Access. **Steps 1-8 are needed only the first time you are running this project on your machine.**
 
 **1. AWS CLI**
 
