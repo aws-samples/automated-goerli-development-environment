@@ -5,10 +5,10 @@
     "ec2Class": "t3",
     "ec2Size": "xlarge",
     "keyName": "YOUR KEY NAME HERE",
-    "keyFile": "./Key/yourKey.pem",
+    "keyFile": "./Key/YOURKEY.pem",
     "userDataFile": "./Scripts/startup_user.sh",
     "cdkOut": "cdk-outputs.json",
     "timeBomb": "30",
     "awsConfig": "~/.aws",
-    "Mnemonic": "Mnemonic from a Wallet like Metamask"
+    "Mnemonic": "Mnemonic from a Wallet like Metamask, will need Goerli ETH from a faucet"
 }

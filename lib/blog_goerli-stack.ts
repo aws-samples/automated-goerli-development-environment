@@ -83,15 +83,6 @@ export class BlogGoerliStack extends cdk.Stack {
     });
 
 
-    // OPTIONAL self destruct - disabled if config.timeBomb is 0, otherwise in minutes
-    /*if (config.timeBomb != "0") {
-
-      const selfDestruct = new SelfDestruct(this, "selfDestructor", {
-          timeToLive: cdk.Duration.minutes(Number(config.timeBomb))
-        });
-  
-        vpc.node.addDependency(selfDestruct);
-      }*/
   
     const securityGroup = new ec2.SecurityGroup(this, config.ec2Name + 'sg',
       {
@@ -107,14 +98,6 @@ export class BlogGoerliStack extends cdk.Stack {
       ec2.Port.tcp(22),
     )
 
-
-    /*const cfnNode = new managedblockchain.CfnNode(this, "MyBCNode" , {
-      networkId: "n-ethereum-goerli",
-      nodeConfiguration: {
-        availabilityZone: process.env.CDK_DEFAULT_REGION + "a",
-        instanceType: "bc.t3.large"
-      }
-    });*/
 
     const createNode = new cr.AwsCustomResource(this, 'createNode', {
       onCreate: { // will be called for a CREATE event
@@ -258,4 +241,4 @@ export class BlogGoerliStack extends cdk.Stack {
   }
 };
 
-//AMB region as per variable
+
