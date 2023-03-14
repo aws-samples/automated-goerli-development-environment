@@ -5,7 +5,7 @@ Steps to Install and Deploy the Automated Goerli Development Environment on AWS,
 The AWS CLI allows you to interact with AWS services from a terminal session. Make sure you have the latest version of the AWS CLI installed on your system.
 
 
-(https://docs.aws.amazon.com/cli/latest/userguide/awscli-install-bundle.html#install-bundle-other)
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 **2. AWS Account**
 
