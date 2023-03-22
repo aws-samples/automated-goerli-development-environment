@@ -91,7 +91,7 @@ _"timeBomb": "30",_
 
 _"awsConfig": "~/.aws",_
 
-_"clientIpAddr": "Please add IP Address of the CIDR IP address of client connecting to EC2"_
+_"clientIpAddr": "Please add the CIDR IP address of client connecting to EC2"_
 
 _"Mnemonic": "Mnemonic from a Wallet like Metamask, will need Goerli ETH_
 
