@@ -10,5 +10,6 @@
     "cdkOut": "cdk-outputs.json",
     "timeBomb": "30",
     "awsConfig": "~/.aws",
+    "clientIpAddr": "Please add IP Address of the CIDR IP address of client connecting to EC2",
     "Mnemonic": "Mnemonic from a Wallet like Metamask, will need Goerli ETH from a faucet"
 }

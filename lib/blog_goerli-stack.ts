@@ -26,6 +26,7 @@ interface Config {
   cdkOut: string,
   timeBomb: string,
   awsConfig: string,
+  clientIpAddr: string,
   Mnemonic: string
 }
 
@@ -89,12 +90,13 @@ export class BlogGoerliStack extends cdk.Stack {
         vpc: vpc,
         allowAllOutbound: true, // will let your instance send outboud traffic
         securityGroupName: config.ec2Name + '-sg',
+        description: 'Security Group for the vpc',
       }
     )
 
     // open the SSH port
     securityGroup.addIngressRule(
-      ec2.Peer.anyIpv4(),
+      ec2.Peer.ipv4(config.clientIpAddr),
       ec2.Port.tcp(22),
     )
 
@@ -188,6 +190,7 @@ export class BlogGoerliStack extends cdk.Stack {
         },
       ],
     });
+
     const arn: string = "arn:aws:ec2:" + process.env.CDK_DEFAULT_REGION + ":" + process.env.CDK_DEFAULT_ACCOUNT + ":instance/" + instance.instanceId;
     const tagPolicyDoc = new iam.PolicyDocument({
       statements: [
