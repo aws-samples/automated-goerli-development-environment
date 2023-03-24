@@ -6,12 +6,11 @@ import * as cr from 'aws-cdk-lib/custom-resources';
 import * as managedblockchain from 'aws-cdk-lib/aws-managedblockchain';
 import * as iam from 'aws-cdk-lib/aws-iam'; // import iam library for permissions
 import { Construct } from 'constructs';
-//import * as aws from "aws-sdk";
 
 import * as fs from 'fs'
 import { Tags } from 'aws-cdk-lib';
 import * as os from 'os';
-//import { SelfDestruct } from 'cdk-time-bomb';
+
 
 
 interface Config {
@@ -51,26 +50,6 @@ export class BlogGoerliStack extends cdk.Stack {
       config.ec2Name + '-role',
       { assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com') }
     );
-
-   const ssmPolicyDoc = new iam.PolicyDocument({
-      statements: [
-        new iam.PolicyStatement({
-          effect: iam.Effect.ALLOW,
-          actions: ["ssm:UpdateInstanceInformation",
-            "ssmmessages:CreateControlChannel",
-            "ssmmessages:CreateDataChannel",
-            "ssmmessages:OpenControlChannel",
-            "ssmmessages:OpenDataChannel"],
-          resources: ["*"],
-        }),
-      ],
-    });
-    
-    const ssmPolicy = new iam.Policy(this, 'ssmPolicy', {
-      document: ssmPolicyDoc
-    });
-
-    role.attachInlinePolicy(ssmPolicy);
 
 
     const vpc = new ec2.Vpc(this, "Vpc", {
@@ -138,7 +117,6 @@ export class BlogGoerliStack extends cdk.Stack {
     this.acID = createAccessor.getResponseField('AccessorId');
     this.BillingToken= createAccessor.getResponseField('BillingToken');
     this.nodeId= createNode.getResponseField('NodeId');
-    //const AMB_URL: string = "https://"+ cfnNode.attrNodeId + ".t.ethereum.managedblockchain." + process.env.CDK_DEFAULT_REGION + ".amazonaws.com?billingtoken=" + this.BillingToken;
     const AMB_URL: string = "https://"+ this.nodeId + ".t.ethereum.managedblockchain." + process.env.CDK_DEFAULT_REGION + ".amazonaws.com?billingtoken=" + this.BillingToken;
     
     const deleteAccessor = new cr.AwsCustomResource(this, 'deleteAccessor', {
@@ -196,9 +174,8 @@ export class BlogGoerliStack extends cdk.Stack {
       statements: [
         new iam.PolicyStatement({
           effect: iam.Effect.ALLOW,
-          actions: ["ec2:DescribeTags"], // needed to pass env variables to teh instance
+          actions: ["ec2:DescribeTags"], // needed to pass env variables to the instance
           resources: ["*"],
-          //resources: [arn],
         }),
       ],
     });
