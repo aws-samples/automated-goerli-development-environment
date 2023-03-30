@@ -42,8 +42,8 @@ npm install npm --global # Upgrade npm to the latest version
 npm install -g npm nodejs typescript aws-sdk aws-cdk yarn
 
 runuser - ec2-user -c 'cd /home/ec2-user;
-git clone https://github.com/mbhatla/NodeDAPP.git;
-cd NodeDAPP;
+git clone https://github.com/aws-samples/decentralized-app-for-goerli-nodejs.git;
+cd decentralized-app-for-goerli-nodejs;
 wait;
 npm install
 cd DemoApps

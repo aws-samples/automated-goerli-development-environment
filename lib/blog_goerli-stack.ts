@@ -51,6 +51,26 @@ export class BlogGoerliStack extends cdk.Stack {
       { assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com') }
     );
 
+    const ssmPolicyDoc = new iam.PolicyDocument({
+      statements: [
+        new iam.PolicyStatement({
+          effect: iam.Effect.ALLOW,
+          actions: ["ssm:UpdateInstanceInformation",
+            "ssmmessages:CreateControlChannel",
+            "ssmmessages:CreateDataChannel",
+            "ssmmessages:OpenControlChannel",
+            "ssmmessages:OpenDataChannel"],
+          resources: ["*"],
+        }),
+      ],
+    });
+    
+    const ssmPolicy = new iam.Policy(this, 'ssmPolicy', {
+      document: ssmPolicyDoc
+    });
+
+    role.attachInlinePolicy(ssmPolicy);
+
 
     const vpc = new ec2.Vpc(this, "Vpc", {
       subnetConfiguration: [

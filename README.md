@@ -129,7 +129,7 @@ Once logged into the EC2 instance, there is bolierplate solidity code for a simp
 
 This will be the directory structure created:  
   
-NodeDAPP: Parent Directory  
+decentralized-app-for-goerli-nodejs: Parent Directory  
     artifacts: Directory used by compiler  
     cache:Directory used by compiler  
     contracts: Solidity code of Smart-Contract  
@@ -140,7 +140,7 @@ NodeDAPP: Parent Directory
 
 Run the following command to run the tests on Smart-Contract
 
-_cd NodeDAPP_
+_cd decentralized-app-for-goerli-nodejs_
 
 _npx hardhat test_
 
